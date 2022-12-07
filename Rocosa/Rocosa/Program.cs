@@ -1,6 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using Rocosa.Datos;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+//Registrar la conxión con la Base de datos.
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                             options.UseSqlServer(
+                                 builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
