@@ -1,37 +1,37 @@
 ﻿@model Rocosa.Models.TipoAplicacion
 
 @{
-    ViewData["Title"] = "Crear";
+    ViewData["Title"] = "Eliminar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<form method="post" asp-action="Crear">
+<form method="post" asp-action="Eliminar">
+    <input asp-for="Id" hidden />
     <div class="border p-3">
 
         <div asp-validation-summary="ModelOnly" class="text-danger">
         </div>
 
         <div class="form-group row">
-            <h2 class="text-info p1-3">Nuevo Tipo Aplicación</h2>
+            <h2 class="text-danger p1-3">¿Está seguro de eliminar la categoria?</h2>
         </div>
 
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <label asp-for="Nombre" class="form-label">Nombre tipo aplicación</label>
-                    <input asp-for="Nombre" class="form-control"/>
-                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                    <input asp-for="Nombre" disabled class="form-control" />
                 </div>
             </div>
-            <br/>
+            <br />
             <div class="d-grid gap-2 d-md-block">
-                <button type="submit" class="btn btn-primary">Crear Nueva</button>
+                <button type="submit" class="btn btn-danger">Eliminar</button>
                 <a asp-controller="TipoAplicacion" asp-action="Index" class="btn btn-success">Regresar</a>
             </div>
 
         </div>
     </div>
-</form>  
+</form>
 
 @section Scripts{
     @{

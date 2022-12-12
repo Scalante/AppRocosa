@@ -13,6 +13,7 @@ namespace Rocosa.Controllers
             this._db = db;
         }
 
+        //Get - Mostrar todas las categorias
         public IActionResult Index()
         {
             IEnumerable<Categoria> lista = this._db.Categoria;
@@ -23,7 +24,6 @@ namespace Rocosa.Controllers
         {
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Crear(Categoria categoria)
@@ -39,6 +39,7 @@ namespace Rocosa.Controllers
 
         }
 
+        //Get - Editar
         public IActionResult Editar(int? Id)
         {
             if (Id == null || Id == 0)
@@ -53,6 +54,7 @@ namespace Rocosa.Controllers
             return View(obj);
         }
 
+        //Post - Editar
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Editar(Categoria categoria)

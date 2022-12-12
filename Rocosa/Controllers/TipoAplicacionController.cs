@@ -13,6 +13,7 @@ namespace Rocosa.Controllers
             this._db = db;
         }
 
+        //Get - Mostrar todos los tipo de aplicación
         public IActionResult Index()
         {
             IEnumerable<TipoAplicacion> lista = this._db.TipoAplicacion;
@@ -24,6 +25,7 @@ namespace Rocosa.Controllers
             return View();
         }
 
+        //Post - Crear
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Crear(TipoAplicacion tipoAplicacion)
@@ -31,6 +33,66 @@ namespace Rocosa.Controllers
             this._db.TipoAplicacion.Add(tipoAplicacion);
             _db.SaveChanges();
 
+            return RedirectToAction(nameof(Index));
+        }
+
+        //Get - Editar
+        public IActionResult Editar(int? Id)
+        {
+            if (Id == null || Id == 0)
+            {
+                return NotFound();
+            }
+            var obj = this._db.TipoAplicacion.Find(Id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+
+        //Post - Editar
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Editar(TipoAplicacion tipoAplicacion)
+        {
+            if (ModelState.IsValid)
+            {
+                this._db.TipoAplicacion.Update(tipoAplicacion);
+                _db.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(tipoAplicacion);
+
+        }
+
+        //Get - Eliminar
+        public IActionResult Eliminar(int? Id)
+        {
+            if (Id == null || Id == 0)
+            {
+                return NotFound();
+            }
+            var obj = this._db.TipoAplicacion.Find(Id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+
+        //Post - Eliminar
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Eliminar(TipoAplicacion tipoAplicacion)
+        {
+            if (tipoAplicacion == null)
+            {
+                return NotFound();
+            }
+            this._db.TipoAplicacion.Remove(tipoAplicacion);
+            _db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
     }
