@@ -13,6 +13,7 @@ namespace Rocosa.Controllers
             this._db = db;
         }
 
+        [HttpGet]
         //Get - Mostrar todas las categorias
         public IActionResult Index()
         {
@@ -20,6 +21,7 @@ namespace Rocosa.Controllers
             return View(lista);
         }
 
+        [HttpGet]
         public IActionResult Crear()
         {
             return View();
@@ -39,7 +41,7 @@ namespace Rocosa.Controllers
 
         }
 
-        //Get - Editar
+        [HttpGet]
         public IActionResult Editar(int? Id)
         {
             if (Id == null || Id == 0)
@@ -54,7 +56,7 @@ namespace Rocosa.Controllers
             return View(obj);
         }
 
-        //Post - Editar
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Editar(Categoria categoria)
@@ -70,7 +72,7 @@ namespace Rocosa.Controllers
 
         }
 
-        //Get - Eliminar
+        [HttpGet]
         public IActionResult Eliminar(int? Id)
         {
             if (Id == null || Id == 0)
@@ -85,7 +87,6 @@ namespace Rocosa.Controllers
             return View(obj);
         }
 
-        //Post - Eliminar
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Eliminar(Categoria categoria)

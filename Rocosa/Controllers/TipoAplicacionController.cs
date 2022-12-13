@@ -13,19 +13,19 @@ namespace Rocosa.Controllers
             this._db = db;
         }
 
-        //Get - Mostrar todos los tipo de aplicación
+        [HttpGet]
         public IActionResult Index()
         {
             IEnumerable<TipoAplicacion> lista = this._db.TipoAplicacion;
             return View(lista);
         }
 
+        [HttpGet]
         public IActionResult Crear()
         {
             return View();
         }
 
-        //Post - Crear
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Crear(TipoAplicacion tipoAplicacion)
@@ -36,7 +36,7 @@ namespace Rocosa.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //Get - Editar
+        [HttpGet]
         public IActionResult Editar(int? Id)
         {
             if (Id == null || Id == 0)
@@ -51,7 +51,6 @@ namespace Rocosa.Controllers
             return View(obj);
         }
 
-        //Post - Editar
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Editar(TipoAplicacion tipoAplicacion)
@@ -67,7 +66,7 @@ namespace Rocosa.Controllers
 
         }
 
-        //Get - Eliminar
+        [HttpGet]
         public IActionResult Eliminar(int? Id)
         {
             if (Id == null || Id == 0)
@@ -82,7 +81,6 @@ namespace Rocosa.Controllers
             return View(obj);
         }
 
-        //Post - Eliminar
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Eliminar(TipoAplicacion tipoAplicacion)
